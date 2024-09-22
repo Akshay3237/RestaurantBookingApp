@@ -1,6 +1,9 @@
-# Ignore Visual Studio files
+# Ignore the obj directory
+obj/
+
+# Ignore specific AssemblyInfo files
+Restorent app/obj/Debug/netcoreapp3.1/Restorent app.AssemblyInfo.cs
+Restorent app/obj/Debug/netcoreapp3.1/Restorent app.AssemblyInfoInputs.cache
+
+
 .vs/
-*.user
-*.suo
-*.vscode/
-*.sln.docstates
