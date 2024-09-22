@@ -1,6 +1,6 @@
 ﻿namespace Restorent_app.Models
 {
-    public class IUserReposetory
+    public interface IReposetoryFeedBack
     {
     }
 }
