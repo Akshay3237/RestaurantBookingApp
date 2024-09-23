@@ -5,4 +5,32 @@
     <RootNamespace>Restorent_app</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20240923104743_firstMigration.cs" />
+    <Compile Remove="Migrations\20240923104743_firstMigration.Designer.cs" />
+    <Compile Remove="Migrations\20240923111426_secondMigration.cs" />
+    <Compile Remove="Migrations\20240923111426_secondMigration.Designer.cs" />
+    <Compile Remove="Migrations\20240923111444_thirdMigration.cs" />
+    <Compile Remove="Migrations\20240923111444_thirdMigration.Designer.cs" />
+    <Compile Remove="Migrations\20240923111732_firstmigrtion.cs" />
+    <Compile Remove="Migrations\20240923111732_firstmigrtion.Designer.cs" />
+    <Compile Remove="Migrations\20240923111902_firstmigration.cs" />
+    <Compile Remove="Migrations\20240923111902_firstmigration.Designer.cs" />
+    <Compile Remove="Migrations\20240923112738_firstmigration.cs" />
+    <Compile Remove="Migrations\20240923112738_firstmigration.Designer.cs" />
+    <Compile Remove="Migrations\20240923113040_firstmigration.cs" />
+    <Compile Remove="Migrations\20240923113040_firstmigration.Designer.cs" />
+    <Compile Remove="Migrations\20240923113353_firstmigration.cs" />
+    <Compile Remove="Migrations\20240923113353_firstmigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

@@ -8,12 +8,11 @@ namespace Restorent_app.Models
         [Key]
         public int FeedbackId { get; set; }  // Primary Key
 
-        [Required]
         [ForeignKey("User")]
         public int UserId { get; set; }  // Foreign Key to UserModel
         public UserModel User { get; set; }
 
-        [Required]
+
         [ForeignKey("Restaurant")]
         public int RestaurantId { get; set; }  // Foreign Key to RestaurantModel
         public RestaurantModel Restaurant { get; set; }

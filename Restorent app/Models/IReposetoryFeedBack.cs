@@ -14,5 +14,9 @@ namespace Restorent_app.Models
         public FeedbackModel getFeedBackByFeedbackid(int feedBackId);
 
         public List<FeedbackModel> getFeedBackModelsByRestaurantId(int restaurantId);
+
+        public bool deleteFeedBackByUserId(int userId);
+
+        public bool deleteFeedbackByRestaurantId(int restaurantId);
     }
 }
