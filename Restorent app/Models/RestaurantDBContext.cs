@@ -34,18 +34,18 @@ namespace Restorent_app.Models
                     .OnDelete(DeleteBehavior.Cascade); // Retain c
         }
 
-        DbSet<UserModel> Users { get; set; }
-        DbSet<RestaurantModel> Restaurants { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<RestaurantModel> Restaurants { get; set; }
 
-        DbSet<TableModel> Tables { get; set; }
+        public DbSet<TableModel> Tables { get; set; }
 
-        DbSet<BookModel> Books { get; set; }
+        public DbSet<BookModel> Books { get; set; }
 
-        DbSet<WaitingModel> Waiters { get; set; }
+        public DbSet<WaitingModel> Waiters { get; set; }
 
-        DbSet<NotificationModel> notifications { get; set; }
+        public DbSet<NotificationModel> notifications { get; set; }
 
-        DbSet<FeedbackModel> feedbacks { get; set; }
+        public DbSet<FeedbackModel> feedbacks { get; set; }
 
         
     }
