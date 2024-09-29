@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace Restorent_app.Models
 {
@@ -12,42 +16,121 @@ namespace Restorent_app.Models
 
         public FeedbackModel createFeedBack(FeedbackModel feedback)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                dbContext.feedbacks.Add(feedback);
+                dbContext.SaveChanges();
+                return feedback;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
         }
 
         public bool deleteFeedBack(FeedbackModel feedbackModel)
         {
-            throw new System.NotImplementedException();
+            return deleteFeedBackByFeedBackid(feedbackModel.FeedbackId);
         }
 
         public bool deleteFeedBackByFeedBackid(int feedbackId)
         {
-            throw new System.NotImplementedException();
+            FeedbackModel feedbackModel=dbContext.feedbacks.Find(feedbackId);
+            if (feedbackModel != null)
+            {
+                try
+                {
+                    dbContext.feedbacks.Remove(feedbackModel);
+                    dbContext.SaveChanges();
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool deleteFeedbackByRestaurantId(int restaurantId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                string query = "DELETE FROM [feedbacks] WHERE  RestaurantId=@restaurantId";
+                SqlParameter sqlParameter = new SqlParameter("@restaurantId", restaurantId);
+                dbContext.Database.ExecuteSqlRaw(query, sqlParameter);
+                return true;
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
         }
 
         public bool deleteFeedBackByUserId(int userId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                string query = "DELETE FROM [feedbacks] WHERE  UserId=@userId";
+                SqlParameter sqlParameter = new SqlParameter("@userId", userId);
+                dbContext.Database.ExecuteSqlRaw(query, sqlParameter);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
         }
 
         public FeedbackModel getFeedBackByFeedbackid(int feedBackId)
         {
-            throw new System.NotImplementedException();
+            return dbContext.feedbacks.Find(feedBackId);
         }
 
         public List<FeedbackModel> getFeedBackModelsByRestaurantId(int restaurantId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                string query = "SELECT * FROM [feedbacks] WHERE  RestaurantId=@restaurantId";
+                SqlParameter sqlParameter = new SqlParameter("@restaurantId", restaurantId);
+                return dbContext.feedbacks.FromSqlRaw<FeedbackModel>(query, sqlParameter).AsNoTracking<FeedbackModel>().ToList<FeedbackModel>();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
         }
 
         public bool updateFeedBack(FeedbackModel feedbackModel)
         {
-            throw new System.NotImplementedException();
+            FeedbackModel oldFeedBack = dbContext.feedbacks.Find(feedbackModel.FeedbackId);
+            if (oldFeedBack != null)
+            {
+                try
+                {
+                    oldFeedBack.Message = feedbackModel.Message;
+                    oldFeedBack.RateNo = feedbackModel.RateNo;
+                    dbContext.SaveChanges();
+
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualBasic;
-
+using System;
 namespace Restorent_app.Models
 {
     public interface IReposetoryBook
@@ -17,6 +17,6 @@ namespace Restorent_app.Models
         public bool cancelBook(BookModel book);
 
         //by tableId user can find availibilty of table at any date.
-        public List<KeyValuePair<DateAndTime, DateAndTime>> availibility(int tableId,DateAndTime Date);
+        public List<KeyValuePair<DateTime, DateTime>> availibility(int tableId,DateTime Date);
     }
 }

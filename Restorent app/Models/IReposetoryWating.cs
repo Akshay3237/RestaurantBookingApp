@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualBasic;
-
+using System;
 namespace Restorent_app.Models
 {
     public interface IReposetoryWating
@@ -10,8 +10,8 @@ namespace Restorent_app.Models
 
         public bool removeWating(WaitingModel waiting);
 
-        public bool isAnyOneWaits(int tableId, DateAndTime start, DateAndTime end);
+        public bool isAnyOneWaits(int tableId, DateTime start, DateTime end);
 
-        public WaitingModel firstWaiter(int tableId, DateAndTime start, DateAndTime end);
+        public WaitingModel firstWaiter(int tableId, DateTime start, DateTime end);
     }
 }
