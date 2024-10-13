@@ -9,5 +9,7 @@
         public UserModel updateUser(int id, UserModel user);
 
         public void deleteUser(int id);
+
+        public bool userExist(string username, string email);
     }
 }

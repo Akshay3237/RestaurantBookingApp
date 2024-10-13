@@ -32,15 +32,16 @@ namespace Restorent_app.Models
 
         public bool findUser(string username, string password)
         {
-            string query = "SELECT COUNT(1) FROM Users WHERE Username = @username AND Password = @password";
+            var user = dbContext.Users.SingleOrDefault(u => u.UserName == username);
 
-            // Parameters for the query
-            var usernameParam = new SqlParameter("@username", username);
-            var passwordParam = new SqlParameter("@password", password);
+            if (user != null)
+            {
+                // Verify the password (assuming a method for verifying hashed passwords)
+                return password==user.Password;
+            }
 
-            // Execute the query and return true if the user exists
-            int result = dbContext.Database.ExecuteSqlRaw(query, usernameParam, passwordParam);
-            return result > 0;
+            return false;
+
             //return false;
         }
 
@@ -71,6 +72,11 @@ namespace Restorent_app.Models
                 return user;
         }
 
+        public bool userExist(string username, string email)
+        {
+            return dbContext.Users.Any(u => u.UserName == username || u.Email == email);
+
+        }
     }
 }
 
