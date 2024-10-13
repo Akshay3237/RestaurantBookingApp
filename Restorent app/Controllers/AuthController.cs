@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restorent_app.Models;
 using Restorent_app.ViewModel;
@@ -29,7 +30,7 @@ namespace Restorent_app.Controllers
             {
                 string userName = logInViewModel.userName;
                 string password = logInViewModel.password;
-
+                Console.WriteLine(userName);
                 // Check if the user exists with the provided username and password
                 if (reposetoryUser.findUser(userName, password))
                 {
