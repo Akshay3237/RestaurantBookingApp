@@ -1,0 +1,45 @@
+﻿@model Restorent_app.ViewModel.LogInViewModel
+
+@{
+    Layout = null; // This assumes you are not using any specific layout. If you have a shared layout, you can change this.
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/site.css" /> <!-- Assuming you have a CSS file for styling -->
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post" asp-controller="Auth" asp-action="Login">
+            <div class="form-group">
+                <label asp-for="userName">Username</label>
+                <input asp-for="userName" class="form-control" placeholder="Enter username" />
+                <span asp-validation-for="userName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="password">Password</label>
+                <input asp-for="password" type="password" class="form-control" placeholder="Enter password" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+    </div>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@ namespace Restorent_app.Models
 
         public ReposetoryUser(RestaurantDBContext dbContext)
         {
-            dbContext = dbContext;
+            this.dbContext = dbContext;
         }
         
         public UserModel createUser(UserModel user)
@@ -27,6 +27,7 @@ namespace Restorent_app.Models
             {
                 dbContext.Users.Remove(user);
             }
+            dbContext.SaveChanges();
         }
 
         public bool findUser(string username, string password)
@@ -40,6 +41,7 @@ namespace Restorent_app.Models
             // Execute the query and return true if the user exists
             int result = dbContext.Database.ExecuteSqlRaw(query, usernameParam, passwordParam);
             return result > 0;
+            //return false;
         }
 
         public UserModel updateUser(int id, UserModel updatedUser)
@@ -67,8 +69,8 @@ namespace Restorent_app.Models
                 dbContext.SaveChanges();
 
                 return user;
-            }
-
         }
+
     }
 }
+
