@@ -45,6 +45,20 @@ namespace Restorent_app.Models
             //return false;
         }
 
+        public int getUserId(string username)
+        {
+            var user = dbContext.Users.SingleOrDefault(u => u.UserName == username);
+
+            if (user != null)
+            {
+                return user.UserId; // Return the user's ID
+            }
+
+            // If the user is not found, you can handle it by returning an invalid ID or throwing an exception
+            // For example, returning -1 could indicate the user was not found
+            return -1;
+        }
+
         public UserModel updateUser(int id, UserModel updatedUser)
         {
            
@@ -75,7 +89,6 @@ namespace Restorent_app.Models
         public bool userExist(string username, string email)
         {
             return dbContext.Users.Any(u => u.UserName == username || u.Email == email);
-
         }
     }
 }

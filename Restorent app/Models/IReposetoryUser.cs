@@ -8,6 +8,8 @@
 
         public UserModel updateUser(int id, UserModel user);
 
+        public int getUserId(string username);
+
         public void deleteUser(int id);
 
         public bool userExist(string username, string email);
