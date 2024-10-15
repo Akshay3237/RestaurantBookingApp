@@ -14,7 +14,7 @@ namespace Restorent_app.Models
 
         [Required]
         [StringLength(50)]
-        public string RestaurantUniqueName { get; set; } // Unique constraint will be set in DbContext
+        public string RestaurantUniqueName { get; set; } 
 
         [Required]
         public string Address { get; set; }

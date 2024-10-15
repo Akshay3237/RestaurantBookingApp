@@ -1,0 +1,58 @@
+﻿@model Restorent_app.Models.RestaurantModel
+
+@{
+    ViewData["Title"] = "Register Restaurant";
+}
+
+<h2>Register Restaurant</h2>
+
+<form asp-action="RegisterRestaurant" method="post">
+    <div class="form-group">
+        <label asp-for="RestaurantName"></label>
+        <input asp-for="RestaurantName" class="form-control" required />
+        <span asp-validation-for="RestaurantName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RestaurantUniqueName"></label>
+        <input asp-for="RestaurantUniqueName" class="form-control" required />
+        <span asp-validation-for="RestaurantUniqueName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" required />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactNumber"></label>
+        <input asp-for="ContactNumber" class="form-control" required />
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <select asp-for="Type" class="form-control" required>
+            <option value="">Select Type</option>
+            <option value="Veg">Vegetarian</option>
+            <option value="NonVeg">Non-Vegetarian</option>
+            <option value="Both">Both</option>
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" class="form-control" step="0.1" min="0" max="5" required />
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="ManagerId" value="1" /> <!-- Set this according to your logic -->
+
+    <button type="submit" class="btn btn-primary">Register Restaurant</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
