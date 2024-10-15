@@ -15,6 +15,7 @@ namespace Restorent_app.Controllers
             this.reposetoryUser = reposetoryUser;
         }
 
+        // Login GET action
         [HttpGet]
         public IActionResult Login()
         {
@@ -22,10 +23,10 @@ namespace Restorent_app.Controllers
             return View(new LogInViewModel());
         }
 
+        // Login POST action
         [HttpPost]
         public IActionResult Login(LogInViewModel logInViewModel)
         {
-            // Check if the model state is valid (based on model validations, if any)
             if (ModelState.IsValid)
             {
                 string userName = logInViewModel.userName;
@@ -47,10 +48,47 @@ namespace Restorent_app.Controllers
                 }
             }
 
-            // If the model state is not valid or login fails, reload the view with errors
+            // Reload the view with errors if login fails
             return View(logInViewModel);
         }
 
+        // Register GET action
+        [HttpGet]
+        public IActionResult Register()
+        {
+            // Return an empty UserModel to the registration form
+            return View(new UserModel());
+        }
+
+        // Register POST action
+        [HttpPost]
+        public IActionResult Register(UserModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                // Check if the user already exists (based on email, for example)
+                if (reposetoryUser.userExist(user.UserName,user.Email))
+                {
+                    // Set an error message if the user already exists
+                    ViewBag.ErrorMessage = "A user with this email already exists.";
+                    return View(user);
+                }
+
+                // Save the new user using the repository
+                reposetoryUser.createUser(user);
+
+                // Optionally, create a session or redirect to the login page
+                HttpContext.Session.SetString("UserName", user.UserName);
+
+                // Redirect to login or home after successful registration
+                return RedirectToAction("Login", "Auth");
+            }
+
+            // If the model state is not valid, reload the view with validation errors
+            return View(user);
+        }
+
+        // Logout action
         [HttpGet]
         public IActionResult Logout()
         {

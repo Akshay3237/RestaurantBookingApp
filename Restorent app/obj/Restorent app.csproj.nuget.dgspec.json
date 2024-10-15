@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\source\\repos\\Restorent app\\Restorent app\\Restorent app.csproj": {}
+    "C:\\Users\\HP\\Desktop\\Restaurant\\RestaurantBookingApp\\Restorent app\\Restorent app.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\source\\repos\\Restorent app\\Restorent app\\Restorent app.csproj": {
+    "C:\\Users\\HP\\Desktop\\Restaurant\\RestaurantBookingApp\\Restorent app\\Restorent app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\source\\repos\\Restorent app\\Restorent app\\Restorent app.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Restaurant\\RestaurantBookingApp\\Restorent app\\Restorent app.csproj",
         "projectName": "Restorent app",
-        "projectPath": "C:\\Users\\admin\\source\\repos\\Restorent app\\Restorent app\\Restorent app.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\source\\repos\\Restorent app\\Restorent app\\obj\\",
+        "projectPath": "C:\\Users\\HP\\Desktop\\Restaurant\\RestaurantBookingApp\\Restorent app\\Restorent app.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\Restaurant\\RestaurantBookingApp\\Restorent app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
