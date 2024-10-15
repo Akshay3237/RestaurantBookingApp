@@ -67,7 +67,7 @@ namespace Restorent_app.Controllers
             if (ModelState.IsValid)
             {
                 // Check if the user already exists (based on email, for example)
-                if (reposetoryUser.UserExists(user.Email))
+                if (reposetoryUser.userExist(user.UserName,user.Email))
                 {
                     // Set an error message if the user already exists
                     ViewBag.ErrorMessage = "A user with this email already exists.";
