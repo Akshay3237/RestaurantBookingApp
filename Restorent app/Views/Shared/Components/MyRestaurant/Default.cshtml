@@ -1,0 +1,106 @@
+﻿@model Restorent_app.Models.RestaurantModel
+
+@if (Model != null)
+{
+    <div class="card">
+        <div class="card-header">
+            <h3>@Model.RestaurantName</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Unique Name: </strong>@Model.RestaurantUniqueName</p>
+            <p><strong>Address: </strong>@Model.Address</p>
+            <p><strong>Contact Number: </strong>@Model.ContactNumber</p>
+            <p><strong>Type: </strong>@Model.Type</p>
+            <p><strong>Rating: </strong>@Model.Rating</p>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons mt-4">
+                <a asp-action="ShowTables" asp-controller="Restaurant" asp-route-id="@Model.RestaurantId" class="btn btn-success">Show Table List</a>
+                <a asp-action="ShowNotificationForRestaurant" asp-controller="Notification" asp-route-RestaurantId="@Model.RestaurantId" class="btn btn-primary">Show Notifications</a>
+                <a asp-action="ShowFeedback" asp-controller="Feedback" asp-route-id="@Model.RestaurantId" class="btn btn-info">Show Feedbacks</a>
+
+                @* <a asp-action="ShowWaitings" asp-controller="Waiting" class="btn btn-danger">Show Waitings</a> *@
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>No restaurant found for this manager.</p>
+}
+
+<!-- Inline CSS for styling the card and buttons -->
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .card-header h3 {
+            margin: 0;
+        }
+
+    .card-body {
+        padding: 15px;
+    }
+
+        .card-body p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: white;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border: none;
+        color: white;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+</style>

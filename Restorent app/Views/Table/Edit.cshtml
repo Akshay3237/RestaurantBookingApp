@@ -1,0 +1,49 @@
+﻿@model Restorent_app.Models.TableModel
+
+@{
+    ViewData["Title"] = "Edit Table";
+}
+
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        margin-right: 10px;
+    }
+</style>
+
+<div class="container">
+    <h2>Edit Table for @Model.Restaurant.RestaurantName</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Tableid" />
+        <input type="hidden" asp-for="RestaurantId" />
+
+        <div class="form-group">
+            <label asp-for="NumberOfTable" class="control-label">Number of Tables:</label>
+            <input asp-for="NumberOfTable" class="form-control" />
+            <span asp-validation-for="NumberOfTable" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Capacity" class="control-label">Capacity:</label>
+            <input asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a asp-action="ShowTables" asp-controller="Restaurant" asp-route-id="@Model.Restaurant.RestaurantId" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

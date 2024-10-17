@@ -1,0 +1,32 @@
+﻿@model Restorent_app.Models.TableModel
+
+@{
+    ViewData["Title"] = "Delete Table";
+}
+
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .btn-danger {
+        background-color: red;
+        color: white;
+    }
+</style>
+
+<div class="container">
+    <h2>Delete Table</h2>
+    <h4>Are you sure you want to delete the following table?</h4>
+    <div>
+        <h5>Restaurant: @Model.Restaurant.RestaurantName</h5>
+        <p><strong>Table Number: </strong>@Model.NumberOfTable</p>
+        <p><strong>Capacity: </strong>@Model.Capacity</p>
+    </div>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Tableid" /> <!-- Assuming Tableid is the primary key -->
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="ShowTables" asp-controller="Restaurant" asp-route-id="@Model.RestaurantId" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

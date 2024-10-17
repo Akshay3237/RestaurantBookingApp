@@ -1,0 +1,67 @@
+﻿@model List<Restorent_app.Models.TableModel>
+
+@{
+    ViewData["Title"] = "Tables List";
+}
+
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+    .btn {
+        margin: 5px;
+    }
+</style>
+
+<div class="container">
+    <h2>Tables List</h2>
+    @{
+        var restaurantId = ViewData["RestaurantId"];
+    }
+    <a class="btn btn-success" asp-controller="Restaurant" asp-action="AddTable" asp-route-id="@restaurantId">Add Table</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Table ID</th>
+                <th>Capacity</th>
+                <th>Number of Tables</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var table in Model)
+                {
+                    <tr>
+                        <td>@table.Tableid</td>
+                        <td>@table.Capacity</td>
+                        <td>@table.NumberOfTable</td>
+                        <td>
+                            <a asp-action="ShowBookings" asp-controller="Booking" asp-route-TableId="@table.Tableid" class="btn btn-warning">Show Bookings</a>
+                            <a asp-action="Edit" asp-controller="Table" asp-route-id="@table.Tableid" class="btn btn-warning">Edit</a>
+                            <a asp-action="Delete" asp-controller="Table" asp-route-id="@table.Tableid" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">No tables found for this restaurant.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

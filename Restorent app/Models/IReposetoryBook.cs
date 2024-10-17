@@ -18,5 +18,11 @@ namespace Restorent_app.Models
 
         //by tableId user can find availibilty of table at any date.
         public List<KeyValuePair<DateTime, DateTime>> availibility(int tableId,DateTime Date);
+
+        public List<BookModel> getBookingByTableId(int TableId);
+
+        public List<BookModel> getBookingByUserId(int UserId);
+
+        public BookModel getBookModelByBookId(int BookId);
     }
 }

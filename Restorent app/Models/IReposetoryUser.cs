@@ -13,5 +13,7 @@
         public void deleteUser(int id);
 
         public bool userExist(string username, string email);
+
+        public UserModel getUserByUserId(int UserId);
     }
 }

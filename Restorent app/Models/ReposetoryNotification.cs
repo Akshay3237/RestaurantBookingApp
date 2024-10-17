@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 namespace Restorent_app.Models
@@ -61,10 +63,12 @@ namespace Restorent_app.Models
         {
              try
             {
-                string query = "DELETE FROM [notifications] where RestaurantId=@restaurantId AND IsUserSide=FALSE";
-                SqlParameter sqlParameter = new SqlParameter("@restaurantId", reasturantId);
-                dbContext.Database.ExecuteSqlRaw(query,sqlParameter);
-                
+                List<NotificationModel> notificationModels = GetAllNotifications().Where((notification) => notification.RestaurantId == reasturantId && (!notification.IsUserSide)).ToList();
+
+                foreach (NotificationModel notification in notificationModels)
+                {
+                    DeletenotificationByNotificationId(notification.NotificationId);
+                }
                 return true;
             }catch(Exception e)
             {
@@ -78,9 +82,12 @@ namespace Restorent_app.Models
         {
             try
             {
-                string query = "DELETE FROM [notifications] where UserId=@userId AND IsUserSide=True";
-                SqlParameter sqlParameter = new SqlParameter("@userId", userId);
-                dbContext.Database.ExecuteSqlRaw(query, sqlParameter);
+                List<NotificationModel> notificationModels = GetAllNotifications().Where((notification) => notification.UserId == userId && notification.IsUserSide).ToList();
+
+                foreach(NotificationModel notification in notificationModels)
+                {
+                    DeletenotificationByNotificationId(notification.NotificationId);
+                }
 
                 return true;
             }
@@ -89,6 +96,11 @@ namespace Restorent_app.Models
                 Console.WriteLine(e.ToString());
                 return false;
             }
+        }
+
+        public List<NotificationModel> GetAllNotifications()
+        {
+            return dbContext.notifications.ToList();
         }
     }
 }

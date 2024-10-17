@@ -45,6 +45,11 @@ namespace Restorent_app.Models
             //return false;
         }
 
+        public UserModel getUserByUserId(int UserId)
+        {
+            return dbContext.Users.Find(UserId);
+        }
+
         public int getUserId(string username)
         {
             var user = dbContext.Users.SingleOrDefault(u => u.UserName == username);

@@ -1,0 +1,41 @@
+﻿@model Restorent_app.Models.TableModel
+
+@{
+    ViewData["Title"] = "Add Table";
+}
+
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container">
+    <h2>Add Table for @Model.Restaurant.RestaurantName</h2>
+
+    <form asp-action="AddTable" method="post">
+        <input type="hidden" asp-for="RestaurantId" />
+
+        <div class="form-group">
+            <label asp-for="NumberOfTable" class="control-label">Number of Tables:</label>
+            <input asp-for="NumberOfTable" class="form-control" />
+            <span asp-validation-for="NumberOfTable" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Capacity" class="control-label">Capacity:</label>
+            <input asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Table</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

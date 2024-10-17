@@ -1,0 +1,57 @@
+﻿@model Restorent_app.Models.BookModel
+
+@{
+    ViewData["Title"] = "Book a Table";
+}
+
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .text-danger {
+        color: red;
+    }
+
+    .alert {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <h2>Book Table at @Model.Table.Restaurant.RestaurantName</h2>
+
+    @if (ViewBag.error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.error
+        </div>
+    }
+
+    <form asp-action="Book" method="post">
+        <input type="hidden" asp-for="TableId" />
+
+        <div class="form-group">
+            <label asp-for="StartTime" class="control-label">Start Time:</label>
+            <input asp-for="StartTime" class="form-control" type="datetime-local" />
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="EndTime" class="control-label">End Time:</label>
+            <input asp-for="EndTime" class="form-control" type="datetime-local" />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Book Table</button>
+        <a asp-action="ShowTableList" asp-controller="Table" asp-route-id="@Model.Table.RestaurantId" class="btn btn-success">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

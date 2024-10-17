@@ -1,0 +1,42 @@
+﻿@model List<Restorent_app.Models.NotificationModel>
+
+@{
+    ViewBag.Title = "Your Notifications";
+}
+
+<h2>Your Notifications</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <!-- Delete All Notifications -->
+    <div class="mb-3">
+        <a asp-action="DeleteAllNotifications" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete all Notification?');">Delete All Notifications</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Restaurant Name</th>
+                <th>Message</th>
+                <th>Actions</th> <!-- Added this column for Delete action -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var notification in Model)
+            {
+                <tr>
+                    <td>@notification.Restaurant.RestaurantName</td>
+                    <td>@notification.Message</td>
+                    <td>
+                        <!-- Delete single notification -->
+                        <a asp-action="DeleteNotification" asp-route-id="@notification.NotificationId" class="btn btn-danger" >Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No notifications available at the moment.</p>
+}

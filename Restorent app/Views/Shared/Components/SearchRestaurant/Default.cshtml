@@ -1,0 +1,56 @@
+﻿@model List<Restorent_app.Models.RestaurantModel>
+
+<div class="search-container">
+    <input type="text" id="searchInput" class="form-control" placeholder="Search restaurants..." onkeyup="searchRestaurants()" />
+
+    <ul id="suggestionsList" class="suggestions">
+        @foreach (var restaurant in Model)
+        {
+            <li>
+                <a asp-controller="Restaurant" asp-action="Details" asp-route-id="@restaurant.RestaurantId">
+                    @restaurant.RestaurantName
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+<script>
+    function searchRestaurants() {
+        var searchTerm = document.getElementById('searchInput').value;
+        
+        fetch(`/Restaurant/SearchSuggestions?searchTerm=${searchTerm}`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('suggestionsList').innerHTML = html;
+            });
+    }
+</script>
+
+<style>
+    .suggestions {
+        list-style-type: none;
+        padding-left: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+
+    .suggestions li {
+        padding: 10px;
+    }
+
+    .suggestions li a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .suggestions li:hover {
+        background-color: #f0f0f0;
+    }
+
+    .suggestions li a:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -28,6 +28,11 @@ namespace Restorent_app
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
             services.AddScoped<IReposetoryUser,ReposetoryUser>();
+            services.AddScoped<IReposetoryRestaurant,RepositoryRestaurant>();
+            services.AddScoped<IReposetoryBook,ReposetoryBook>();
+            services.AddScoped<IReposetoryTable, ReposetoryTable>();
+            services.AddScoped<IReposetoryNotification, ReposetoryNotification>();
+            services.AddScoped<IReposetoryFeedBack, ReposetoryFeedBack>();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout

@@ -14,18 +14,39 @@ namespace Restorent_app.Controllers
         {
             this.reposetoryUser = reposetoryUser;
         }
+        private bool CheckForAuthenticate()
+        {
+            // Check if the session contains the UserName and UserId keys
+            string userName = HttpContext.Session.GetString("UserName");
+            string userId = HttpContext.Session.GetString("UserId");
 
+            // If both session values are not null, the user is authenticated
+            if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(userId))
+            {
+                return true;
+            }
+
+            // Otherwise, the user is not authenticated
+            return false;
+        }
+
+        // Login GET action
         [HttpGet]
         public IActionResult Login()
         {
+            if (CheckForAuthenticate())
+            {
+                return RedirectToAction("Index", "Home");
+            }
             // Render the login view with an empty model
+            ViewBag.IsAuthenticate = false;
             return View(new LogInViewModel());
         }
 
+        // Login POST action
         [HttpPost]
         public IActionResult Login(LogInViewModel logInViewModel)
         {
-            // Check if the model state is valid (based on model validations, if any)
             if (ModelState.IsValid)
             {
                 string userName = logInViewModel.userName;
@@ -36,9 +57,9 @@ namespace Restorent_app.Controllers
                 {
                     // Create a session for the logged-in user
                     HttpContext.Session.SetString("UserName", userName);
-
+                    HttpContext.Session.SetString("UserId", reposetoryUser.getUserId(userName).ToString());
                     // Redirect to the dashboard or home page
-                    return RedirectToAction("Dashboard", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -46,11 +67,52 @@ namespace Restorent_app.Controllers
                     ViewBag.ErrorMessage = "Invalid username or password.";
                 }
             }
-
-            // If the model state is not valid or login fails, reload the view with errors
+            ViewBag.IsAuthenticate = false;
+            // Reload the view with errors if login fails
             return View(logInViewModel);
         }
 
+        // Register GET action
+        [HttpGet]
+        public IActionResult Register()
+        {
+            if (CheckForAuthenticate())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.IsAuthenticate = false;
+            // Return an empty UserModel to the registration form
+            return View(new UserModel());
+        }
+
+        // Register POST action
+        [HttpPost]
+        public IActionResult Register(UserModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                // Check if the user already exists (based on email, for example)
+                if (reposetoryUser.userExist(user.UserName,user.Email))
+                {
+                    // Set an error message if the user already exists
+                    ViewBag.ErrorMessage = "A user with this email already exists.";
+                    return View(user);
+                }
+
+                // Save the new user using the repository
+                reposetoryUser.createUser(user);
+
+               
+
+                // Redirect to login or home after successful registration
+                return RedirectToAction("Login", "Auth");
+            }
+            ViewBag.IsAuthenticate = false;
+            // If the model state is not valid, reload the view with validation errors
+            return View(user);
+        }
+
+        // Logout action
         [HttpGet]
         public IActionResult Logout()
         {

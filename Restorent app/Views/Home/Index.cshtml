@@ -1,8 +1,87 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    bool IsManager = ViewBag.IsManager != null ? (bool)ViewBag.IsManager : false;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container home-page">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4">Welcome</h1>
+
+            @if (IsManager)
+            {
+                <!-- Show the restaurant component if the user is a manager -->
+                <div class="restaurant-info mt-4">
+                    @await Component.InvokeAsync("MyRestaurant")
+                </div>
+            }
+            else
+            {
+                <!-- If not a manager, show a button to add a restaurant -->
+                <a asp-action="AddRestaurant" asp-controller="Restaurant" class="btn btn-primary mt-4 add-restaurant-btn">
+                    Add Restaurant
+                </a>
+            }
+        </div>
+    </div>
 </div>
+
+<!-- Inline CSS -->
+<style>
+    /* General page layout */
+    .container.home-page {
+        margin-top: 50px;
+    }
+
+    h1.display-4 {
+        color: #2c3e50;
+        font-size: 3rem;
+        font-weight: 600;
+    }
+
+    .add-restaurant-btn {
+        padding: 12px 25px;
+        font-size: 1.2rem;
+        background-color: #3498db;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-restaurant-btn:hover {
+        background-color: #2980b9;
+        color: white;
+    }
+
+    /* Restaurant details section */
+    .restaurant-info {
+        background-color: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .restaurant-details h2 {
+        color: #16a085;
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .restaurant-details p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+
+    .restaurant-details p strong {
+        color: #2c3e50;
+    }
+
+    .text-danger {
+        color: #e74c3c;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+</style>

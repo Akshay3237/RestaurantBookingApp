@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Not Found";
+}
+
+<style>
+    .not-found-container {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+    }
+
+    .not-found-message {
+        font-size: 1.2rem;
+        color: #dc3545;
+    }
+
+    .home-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .home-link:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="not-found-container">
+    <h1 class="not-found-header">Restaurant Not Found</h1>
+
+    @if (ViewBag.RestaurantId != null)
+    {
+        <p class="not-found-message">Sorry, no restaurant found with ID: @ViewBag.RestaurantId.</p>
+        <a asp-action="ShowAllRestaurants" asp-controller="Restaurant" class="home-link">Back to Restaurant List</a>
+    }
+    else
+    {
+        <p class="not-found-message">Sorry, no restaurant found.</p>
+    }
+
+    
+</div>

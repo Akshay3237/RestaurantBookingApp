@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Restorent app")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43a243720928006f9cdc3f7434be55b405b50ad5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77b16112eff60f888b99c6d1f7a03ba438edb297")]
 [assembly: System.Reflection.AssemblyProductAttribute("Restorent app")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Restorent app")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

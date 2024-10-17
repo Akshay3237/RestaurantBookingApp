@@ -1,0 +1,49 @@
+﻿@model Restorent_app.Models.RestaurantModel
+
+<form asp-action="AddRestaurant" asp-controller="Restaurant" method="post">
+    <div class="form-group">
+        <label asp-for="RestaurantName"></label>
+        <input asp-for="RestaurantName" class="form-control" />
+        <span asp-validation-for="RestaurantName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RestaurantUniqueName"></label>
+        <input asp-for="RestaurantUniqueName" class="form-control" />
+        <span asp-validation-for="RestaurantUniqueName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactNumber"></label>
+        <input asp-for="ContactNumber" class="form-control" />
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <select asp-for="Type" class="form-control">
+            <option value="Veg">Veg</option>
+            <option value="NonVeg">Non-Veg</option>
+            <option value="Both">Both</option>
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" class="form-control" value="0" readonly />
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Restaurant</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

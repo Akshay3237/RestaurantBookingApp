@@ -1,0 +1,101 @@
+﻿@model Restorent_app.Models.RestaurantModel
+
+<!-- Scoped CSS specific to this view -->
+<style>
+    .restaurant-details-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .restaurant-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .restaurant-card-header {
+        background-color: #007bff;
+        color: white;
+        padding: 15px;
+        font-size: 1.5rem;
+        text-align: center;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .restaurant-card-body {
+        padding: 20px;
+    }
+
+        .restaurant-card-body p {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+    .restaurant-card-footer {
+        padding: 15px;
+        text-align: center;
+    }
+
+        .restaurant-card-footer a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+    .btn-info {
+        background-color: #17a2b8;
+    }
+
+        .btn-info:hover {
+            background-color: #117a8b;
+        }
+</style>
+
+<div class="restaurant-details-container">
+    <div class="restaurant-card">
+        <div class="restaurant-card-header">
+            <h2>@Model.RestaurantName</h2>
+        </div>
+        <div class="restaurant-card-body">
+            <p><strong>Unique Name:</strong> @Model.RestaurantUniqueName</p>
+            <p><strong>Address:</strong> @Model.Address</p>
+            <p><strong>Contact Number:</strong> @Model.ContactNumber</p>
+            <p><strong>Type:</strong> @Model.Type</p>
+            <p><strong>Rating:</strong> @Model.Rating</p>
+        </div>
+        <div class="restaurant-card-footer">
+            <!-- Button for booking a table -->
+            <a asp-controller="Table" asp-action="ShowTableList" asp-route-id="@Model.RestaurantId" class="btn-primary">Book a Table</a>
+
+            <!-- Button for giving feedback -->
+            <a asp-controller="Feedback" asp-action="GiveFeedback" asp-route-id="@Model.RestaurantId" class="btn-secondary">Give Feedback</a>
+
+            <!-- Button for viewing all bookings -->
+            @* <a asp-controller="Booking" asp-action="AllBookings" asp-route-id="@Model.RestaurantId" class="btn-info">View All Bookings</a> *@
+        </div>
+    </div>
+</div>

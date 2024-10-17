@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -22,6 +22,12 @@
     <Compile Remove="Migrations\20240923113040_firstmigration.Designer.cs" />
     <Compile Remove="Migrations\20240923113353_firstmigration.cs" />
     <Compile Remove="Migrations\20240923113353_firstmigration.Designer.cs" />
+    <Compile Remove="Migrations\20241016122032_UpdatedDb.cs" />
+    <Compile Remove="Migrations\20241016122032_UpdatedDb.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Shared\Components\SearchRestaurant\_RestaurantSuggestionsPartial.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +38,18 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Shared\Components\SearchRestaurant\_RestaurantSuggestionsPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Shared\Components\SearchRestaurant\_RestaurantSuggestionsPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Restaurant\_RestaurantSuggestionsPartial.cshtml" />
   </ItemGroup>
 
 </Project>

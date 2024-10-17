@@ -1,0 +1,58 @@
+﻿@model List<Restorent_app.Models.RestaurantModel>
+
+<style>
+    .restaurant-card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 15px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .restaurant-name {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .restaurant-type {
+        color: #666;
+        
+    }
+
+    .restaurant-Rating{
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .button-group {
+        margin-top: 10px;
+    }
+
+    .btn {
+        margin: 5px;
+    }
+</style>
+
+<div>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var restaurant in Model)
+        {
+            <div class="restaurant-card">
+                <div class="restaurant-name">@restaurant.RestaurantName</div>
+                <div class="restaurant-type">Type: @restaurant.Type</div>
+                <div class="restaurant-Rating">Rating: @restaurant.Rating</div>
+                <div class="button-group">
+                    <a asp-action="ShowTableList" asp-controller="Table" asp-route-id="@restaurant.RestaurantId" class="btn btn-primary">Book Table</a>
+                    <a asp-action="ShowFeedback" asp-controller="Feedback" asp-route-id="@restaurant.RestaurantId" class="btn btn-secondary">Show Feedback</a>
+                    <a asp-action="Details" asp-controller="Restaurant" asp-route-id="@restaurant.RestaurantId" class="btn btn-success">Open Restaurant</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No restaurants available.</p>
+    }
+</div>

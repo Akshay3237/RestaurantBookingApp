@@ -1,4 +1,6 @@
-﻿namespace Restorent_app.Models
+﻿using System.Collections.Generic;
+
+namespace Restorent_app.Models
 {
     public interface IReposetoryNotification
     {
@@ -14,5 +16,7 @@
 
         //delete those notification where restaurantId=notification.restaurantId AND isUserSide=false
         public bool DeleteNotificationByRestaurantId(int reasturantId);
+
+        public List<NotificationModel> GetAllNotifications();
     }
 }
