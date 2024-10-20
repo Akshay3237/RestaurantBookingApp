@@ -263,7 +263,7 @@ namespace Restorent_app.Controllers
                         if (restaurantModel.ManagerId != UserId)
                         {
 
-                            return RedirectToAction("ShowMyBooking", "Booking");
+                            return RedirectToAction("ShowBookings", "Booking",new { TableId =bookModel.TableId});
                         }
                         bookModel.Table = reposetoryTable.getTableModelByTableId(bookModel.TableId);
                         bookModel.Table.Restaurant = reposetoryRestaurant.getRestaurantModelById(bookModel.Table.RestaurantId);
@@ -282,11 +282,11 @@ namespace Restorent_app.Controllers
 
 
                         reposetoryBook.cancelBook(bookModel);
-                        return RedirectToAction("ShowMyBooking", "Booking");
+                        return RedirectToAction("ShowBookings", "Booking", new { TableId = bookModel.TableId });
                     }
                     else
                     {
-                        return RedirectToAction("ShowMyBooking", "Booking");
+                        return RedirectToAction("Index", "home");
                     }
                 }
 
