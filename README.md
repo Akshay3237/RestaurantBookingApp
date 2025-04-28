@@ -22,7 +22,7 @@ Clone the Repository (if applicable):
 Clone  project repository 
 bash
 Copy code
-git clone https://github.com/your-username/RestaurantBookingApp.git
+git clone https://github.com/Akshay3237/RestaurantBookingApp.git
 Navigate to the project directory:
 bash
 Copy code
